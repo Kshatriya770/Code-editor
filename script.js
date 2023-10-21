@@ -15,18 +15,55 @@ lockButton.addEventListener('click', () => {
     lockButton.innerText = codeEditor.disabled ? 'Unlock' : 'Lock';
 });
 
-// Add a "Tab" keypress event to indent text
+// Automatic indentation and bracket completion
 codeEditor.addEventListener('keydown', (event) => {
-    if (event.key === 'Tab') {
-        event.preventDefault(); // Prevent the default tab behavior
+    if (event.key === 'Enter') {
+        event.preventDefault();
         const start = codeEditor.selectionStart;
         const end = codeEditor.selectionEnd;
+        const indent = '    '; // Four spaces for indentation, adjust as needed
 
-        // Insert a tab character (or spaces) at the cursor position
-        const tabCharacter = '    '; // Use four spaces for each tab, adjust as needed
-        codeEditor.value = codeEditor.value.substring(0, start) + tabCharacter + codeEditor.value.substring(end);
-        
-        // Set the cursor position after the inserted tab character(s)
-        codeEditor.selectionStart = codeEditor.selectionEnd = start + tabCharacter.length;
+        // Insert a new line and proper indentation
+        codeEditor.value =
+            codeEditor.value.substring(0, start) +
+            '\n' + indent +
+            codeEditor.value.substring(end);
+
+        // Set the cursor position after the inserted new line and indentation
+        codeEditor.selectionStart = codeEditor.selectionEnd = start + indent.length;
+    } else if (event.key === '(' || event.key === '[' || event.key === '{') {
+        event.preventDefault();
+
+        // Insert an opening bracket and move the cursor inside
+        const start = codeEditor.selectionStart;
+        const bracket = event.key;
+        const matchingBracket = (bracket === '(') ? ')' : (bracket === '[') ? ']' : '}';
+        codeEditor.value =
+            codeEditor.value.substring(0, start) +
+            bracket + matchingBracket +
+            codeEditor.value.substring(start);
+
+        // Set the cursor position inside the brackets
+        codeEditor.selectionStart = codeEditor.selectionEnd = start + 1;
+    }
+});
+
+// Detect and auto-close brackets when a closing bracket is typed
+codeEditor.addEventListener('input', (event) => {
+    const cursorPosition = codeEditor.selectionStart;
+    const code = codeEditor.value;
+    const closeBrackets = [')', ']', '}'];
+    const openBrackets = ['(', '[', '{'];
+
+    if (closeBrackets.includes(event.data) && cursorPosition < code.length) {
+        const nextChar = code[cursorPosition];
+        if (nextChar === event.data) {
+            // If a closing bracket is typed right after another closing bracket, do nothing
+            event.preventDefault();
+        } else if (openBrackets.includes(nextChar)) {
+            // If a closing bracket is typed after an opening bracket, move the cursor over it
+            event.preventDefault();
+            codeEditor.selectionStart = codeEditor.selectionEnd = cursorPosition + 1;
+        }
     }
 });
