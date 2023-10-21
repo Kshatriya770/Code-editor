@@ -43,6 +43,6 @@ This code editor is provided under the MIT License. Feel free to use and modify 
 
 ## Contact
 
-If you have any questions, issues, or suggestions, feel free to reach out via [email@example.com](mailto:email@example.com).
+If you have any questions, issues, or suggestions, feel free to reach out via [email@example.com](mailto:saurabh.s.kshatriya7@gmail.com).
 
 Enjoy coding with Basic Code Editor!
