@@ -3,22 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Code Editor</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <div class="code-editor">
-        <select class="code-editor__language-select">
-            <option value="java">Java</option>
-            <option value="python">Python</option>
-            <option value="cpp">C++</option>
-        </select>
-        <textarea class="code-editor__textarea"></textarea>
-        <div class="code-editor__buttons">
-            <button class="code-editor__button copy-button">Copy</button>
-            <button class="code-editor__button save-button">Save</button>
-            <button class="code-editor__button toggle-lock-button">Lock/Unlock</button>
+    <div class="editor-container">
+        <div class="editor-toolbar">
+            <button id="copy-button">Copy</button>
+            <button id="save-button">Save</button>
+            <button id="lock-button">Lock</button>
+            <div class="mode-dropdown">
+                <select id="language-select">
+                    <option value="javascript">JavaScript</option>
+                    <option value="python">Python</option>
+                    <!-- Add more languages here -->
+                </select>
+            </div>
+            <button id="theme-toggle">Toggle Theme</button>
         </div>
+        <textarea id="code-editor"></textarea>
     </div>
     <script src="script.js"></script>
 </body>
