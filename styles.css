@@ -1,0 +1,41 @@
+/* Dark mode CSS for the code editor */
+body {
+    background-color: #1e1e1e;
+    color: #fff;
+}
+
+.code-editor {
+    width: 400px;
+    height: 300px;
+    border: 1px solid #333;
+    font-family: monospace;
+    background-color: #1e1e1e;
+    position: relative;
+}
+
+.code-editor__textarea {
+    width: 100%;
+    height: 100%;
+    border: none;
+    padding: 10px;
+    background-color: #2a2a2a;
+    color: #fff;
+}
+
+.code-editor__buttons {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.code-editor__button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+/* Locked state modifier */
+.code-editor--locked .code-editor__textarea {
+    background-color: #2a2a2a;
+    pointer-events: none;
+}

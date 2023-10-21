@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Editor</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div class="code-editor">
+        <select class="code-editor__language-select">
+            <option value="java">Java</option>
+            <option value="python">Python</option>
+            <option value="cpp">C++</option>
+        </select>
+        <textarea class="code-editor__textarea"></textarea>
+        <div class="code-editor__buttons">
+            <button class="code-editor__button copy-button">Copy</button>
+            <button class="code-editor__button save-button">Save</button>
+            <button class="code-editor__button toggle-lock-button">Lock/Unlock</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
